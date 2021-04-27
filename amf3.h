@@ -47,6 +47,7 @@
 
 // Encoding options
 #define AMF3_FORCE_OBJECT 0x01
+#define AMF3_FORCE_ASSOCIATIVE 0x02
 
 // Decoding options
 #define AMF3_CLASS_MAP       0x01
