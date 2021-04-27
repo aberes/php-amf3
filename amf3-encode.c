@@ -116,7 +116,7 @@ static void encodeHash(smart_str *ss, HashTable *ht, int opts, HashTable *sht, H
 static void encodeArray(smart_str *ss, zval *val, int opts, HashTable *sht, HashTable *oht, HashTable *tht, int len TSRMLS_DC) {
 	HashTable *ht = HASH_OF(val);
 	if (encodeRef(ss, ht, oht TSRMLS_CC)) return;
-	if (len != -1) { /* Encode as dense array */
+	if (!(opts & AMF3_FORCE_ASSOCIATIVE) && len != -1) { /* Encode as dense array */
 		encodeU29(ss, (len << 1) | 1);
 		smart_str_appendc(ss, 0x01);
 		ZEND_HASH_FOREACH_VAL(ht, val) {
